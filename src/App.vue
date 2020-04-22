@@ -11,6 +11,7 @@
       <input type="text" name="tweet" placeholder="What's going on?" v-model="text" required>
       <input type="submit" class="btn" value="Submit">
     </form>
+
     <Tweets v-bind:tweets="tweets"></Tweets>
 </div>
 </template>
@@ -49,6 +50,7 @@ export default {
         tweet: 'Beauty in the struggle, ugliness in the success.',
         likes: 18,
       }
+
     ]
   }
 },
@@ -62,12 +64,12 @@ methods:{
     const newTweet = this.selected
     newTweet.tweet = this.text
     newTweet.likes = 0
-    newTweet.id = 4
+
 
 console.log(newTweet)
     this.selected = []
     this.text = ""
-    this.tweets.push(newTweet)
+    this.tweets=[...this.tweets,newTweet]
   },
 }
 
