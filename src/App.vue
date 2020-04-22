@@ -1,78 +1,92 @@
 <template lang="html">
   <div id="app">
+
     <Header v-bind:tweets="tweets"></Header>
 
     <form v-on:submit.prevent="saveTweet" >
       <select v-model="selected">
-        <option v-for="(tweet,index) in tweets" :key="index"v-bind:value="tweet"required>
+        <option v-for="tweet in tweets" v-bind:value="tweet"required>
           {{ tweet.handle }}
         </option>
       </select>
+
       <input type="text" name="tweet" placeholder="What's going on?" v-model="text" required>
       <input type="submit" class="btn" value="Submit">
+
     </form>
 
     <Tweets v-bind:tweets="tweets"></Tweets>
-</div>
+
+  </div>
 </template>
 
 <script>
+
 import Header from './components/Header.vue'
 import Tweets from './components/Tweets.vue'
+
 export default {
   name: "App",
   data() {
     return {
-      selected: [],
-      text: "",
-    tweets:[
-      {
-        id: 1,
-        name: 'James',
-        handle: '@jokerjames',
-        img: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
-        tweet: "If you don't succeed, dust yourself off and try again.",
-        likes: 10,
-      },
-      {
-        id: 2,
-        name: 'Fatima',
-        handle: '@fantasticfatima',
-        img: 'https://semantic-ui.com/images/avatar2/large/molly.png',
-        tweet: 'Better late than never but never late is better.',
-        likes: 12,
-      },
-      {
-        id: 3,
-        name: 'Xin',
-        handle: '@xeroxin',
-        img: 'https://semantic-ui.com/images/avatar2/large/elyse.png',
-        tweet: 'Beauty in the struggle, ugliness in the success.',
-        likes: 18,
-      }
 
-    ]
-  }
-},
+      tweets:[
+              {
+                id: 1,
+                name: 'James',
+                handle: '@jokerjames',
+                img: 'https://semantic-ui.com/images/avatar2/large/matthew.png',
+                tweet: "If you don't succeed, dust yourself off and try again.",
+                likes: 10,
+              },
+              {
+                id: 2,
+                name: 'Fatima',
+                handle: '@fantasticfatima',
+                img: 'https://semantic-ui.com/images/avatar2/large/molly.png',
+                tweet: 'Better late than never but never late is better.',
+                likes: 12,
+              },
+              {
+                id: 3,
+                name: 'Xin',
+                handle: '@xeroxin',
+                img: 'https://semantic-ui.com/images/avatar2/large/elyse.png',
+                tweet: 'Beauty in the struggle, ugliness in the success.',
+                likes: 18,
+              }
+            ],
+            selected:{},
+            text: ""
+          }
+        },
+
 components:{
-  Header,
-  Tweets
+            Header,
+            Tweets
 },
+
 methods:{
-  saveTweet: function(){
-
-    const newTweet = this.selected
-    newTweet.tweet = this.text
-    newTweet.likes = 0
 
 
-console.log(newTweet)
-    this.selected = []
-    this.text = ""
-    this.tweets=[...this.tweets,newTweet]
-  },
-}
 
+          saveTweet: function(){
+            const newObject ={
+              id: this.selected.id,
+              name: this.selected.name,
+              img: this.selected.img,
+              handle: this.selected.handle,
+              tweet: this.text,
+              likes: 0
+            }
+
+            this.tweets.push(newObject)
+console.log(this.tweets)
+            // this.tweets=[...this.tweets,this.selected]
+            this.selected = []
+            this.text = ""
+          },
+        }
 
 }
 </script>
@@ -100,17 +114,17 @@ body{
   background: #666
 }
 
-  form{
-    display: flex
-  }
-  input[type="text"]{
-    flex: 40;
-    padding: 5px
-  }
-  input[type='submit']{
-    flex: 8
-  }
-  select{
-    flex:10
-  }
+form{
+  display: flex
+}
+input[type="text"]{
+  flex: 40;
+  padding: 5px
+}
+input[type='submit']{
+  flex: 8
+}
+select{
+  flex:10
+}
 </style>
