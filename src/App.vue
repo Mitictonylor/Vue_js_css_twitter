@@ -67,12 +67,9 @@ components:{
 },
 
 methods:{
-
-
-
           saveTweet: function(){
             const newObject ={
-              id: this.selected.id,
+              id: this.tweets.length + 1,
               name: this.selected.name,
               img: this.selected.img,
               handle: this.selected.handle,
@@ -81,11 +78,13 @@ methods:{
             }
 
             this.tweets.push(newObject)
-console.log(this.tweets)
+            console.log(this.tweets);
+// console.log(this.tweets.length)
             // this.tweets=[...this.tweets,this.selected]
             this.selected = []
             this.text = ""
           },
+
         }
 
 }
