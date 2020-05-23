@@ -3,7 +3,7 @@
   <header class="header">
     <h1><img src="https://i0.wp.com/techweez.com/wp-content/uploads/2014/03/twt.jpeg?fit=610%2C320&ssl=1" alt="logo"
       width="200" height="80">TWITTER</h1>
-       <p>Total tweets: {{totalLikes}}</p>
+       <p>Total tweets Like: {{totalLikes}}</p>
   </header>
 
 </template>
